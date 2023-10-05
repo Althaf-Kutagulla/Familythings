@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.googlecalender.GoogleCalendarAPI;
-import com.googlecalender.GoogleCalenderAPI;
+
 
 /**
  * Servlet implementation class CreateEvent

@@ -53,7 +53,7 @@ public class GoogleCalendarAPI {
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT)
             throws IOException {
         // Load client secrets.
-        InputStream in = GoogleCalenderAPI.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = GoogleCalendarAPI.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -72,12 +72,17 @@ public class GoogleCalendarAPI {
         return credential;
     }
     
+    
+    
     public Credential refreshExpiredToken(Credential credential) throws IOException {
         if (credential.getExpiresInSeconds() != null && credential.getExpiresInSeconds() <= 60) {
             credential.refreshToken();
         }
         return credential;
     }
+    
+    
+    
 
     public List<Event> getEvents() throws IOException, GeneralSecurityException{
 
@@ -107,7 +112,6 @@ public class GoogleCalendarAPI {
     }
 
  
-
 
    
     public String setNewEvent(String summary,String location,String description,String startDateTimeP,String endDateTimeP) throws IOException, GeneralSecurityException {
@@ -164,13 +168,6 @@ public class GoogleCalendarAPI {
     		//service.events().delete('primary',eventId).execute();
     }
     
-//    public static void main(String args[]) throws IOException, GeneralSecurityException {
-//    	GoogleCalendarAPI cal = new GoogleCalendarAPI();
-//    	List<Event> list =cal.getEvents();
-//    	System.out.println(list);
-//    	String id =cal.setNewEvent("Family Eventc","Kadirix","Dinnerf","2023-12-11T10:00","2023-12-11T11:00");
-//    	System.out.println(id);
-//    }
 
 
   
