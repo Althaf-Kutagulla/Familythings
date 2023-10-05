@@ -76,17 +76,7 @@ if(session.getAttribute("email")==null){
 
 
 
-<form action="CreateEvent" method="post">
 
-	Title :<input type="text" name="title"> </br>
-	Description :<input type="text" name="description"> </br>
-	Location :<input type="text" name="location"> </br>
-	startDate :<input type="datetime-local" name="startDateTime" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD"> </br>
-	endDate :<input type="datetime-local" name="endDateTime" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD"> </br>
-	
-	<input type="submit" value="create event">
-
-</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
