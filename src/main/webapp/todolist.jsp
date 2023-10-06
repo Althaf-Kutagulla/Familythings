@@ -63,8 +63,10 @@ session.setAttribute("eventList",eventList);
                     <th>Location</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Event ID</th>
-                    <th>Actions</th>
+                    <th>Status</th>
+                    <th>Change status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,9 +75,22 @@ session.setAttribute("eventList",eventList);
                         <td><c:out value="${event.getTitle()}"></c:out></td>
                         <td><c:out value="${event.getDescription()}"></c:out></td>
                         <td><c:out value="${event.getLocation()}"></c:out></td>
-                        <td><c:out value="${event.getEndDateTime()}"></c:out></td>
                         <td><c:out value="${event.getStartDateTime()}"></c:out></td>
-                        <td><c:out value="${event.getEventId()}"></c:out></td>
+                        <td><c:out value="${event.getEndDateTime()}"></c:out></td>
+                        <td><c:out value="${event.getStatus()}"></c:out></td>
+                        
+                         <td>
+                            <form action="EventStatus" method="post">
+                                <input type="hidden" name="Id" value="${event.getId()}">
+                                <button type="submit" class="btn btn-success">Mark Done</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="todolisteditform.jsp" method="post">
+                                <input type="hidden" name="eventId" value="${event.getId()}">
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </td>
                         <td>
                             <form action="DeleteEvent" method="post">
                                 <input type="hidden" name="eventId" value="${event.getEventId()}">

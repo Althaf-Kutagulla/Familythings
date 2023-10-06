@@ -1,13 +1,15 @@
 package com.pojo;
 
 public class CalendarEvent {
-	
+	private int id;
 	private String eventId;
 	private String title;
 	private String description;
 	private String location;
 	private String startDateTime;
 	private String endDateTime;
+	private String status;
+	
 	//empty constructor
 	public CalendarEvent(){
 		
@@ -21,6 +23,21 @@ public class CalendarEvent {
 		this.location = location;
 		this.startDateTime = startDateTime;
 		this.endDateTime = endDateTime;
+		
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getEventId() {
 		return eventId;

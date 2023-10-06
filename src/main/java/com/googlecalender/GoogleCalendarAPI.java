@@ -156,6 +156,42 @@ public class GoogleCalendarAPI {
         return eventID;
     }
     
+    
+    public void updateEvent(String eventId, String summary,String description, String location, String startDateTimeP, String endDateTimeP) throws IOException, GeneralSecurityException {
+
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+        Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, refreshExpiredToken(getCredentials(HTTP_TRANSPORT)))
+                .setApplicationName(APPLICATION_NAME).build();
+
+        // Retrieve the existing event by its event ID
+        Event existingEvent = service.events().get("primary", eventId).execute();
+
+        // Update the event properties
+        existingEvent.setSummary(summary);
+        existingEvent.setLocation(location);
+        existingEvent.setDescription(description);
+       // String startdate = startDateTimeP+":00-07:00";
+        System.out.println(startDateTimeP);
+        DateTime startDateTime = new DateTime(startDateTimeP);
+        EventDateTime start = new EventDateTime()
+                .setDateTime(startDateTime)
+                .setTimeZone("Asia/Kolkata");
+        existingEvent.setStart(start);
+        String enddate = endDateTimeP +":00-07:00";
+        System.out.println("enddate :"+endDateTimeP);
+        DateTime endDateTime = new DateTime(endDateTimeP);
+        EventDateTime end = new EventDateTime()
+                .setDateTime(endDateTime)
+                .setTimeZone("Asia/Kolkata");
+        existingEvent.setEnd(end);
+
+        // Update the event using the update method
+        service.events().update("primary", eventId, existingEvent).execute();
+
+        System.out.println("Event updated: " + eventId);
+    }
+
+    
     public void deleteEvent(String eventId) throws IOException, GeneralSecurityException {
     	final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
     	
@@ -168,6 +204,16 @@ public class GoogleCalendarAPI {
     		//service.events().delete('primary',eventId).execute();
     }
     
+    
+//    public static void main(String args[]) throws IOException, GeneralSecurityException {
+//    	GoogleCalendarAPI cal = new GoogleCalendarAPI();
+//    	String start="2023-12-16T11:00";
+//    	String end="2023-12-16T12:00";
+//    	String startDateTime =start+":00-07:00";
+//    	String endDateTime =end+":00-07:00";
+//    	cal.updateEvent("qj430kp1fl06aht499rje5sen0", "playtime with friends", "school friends", "Play ground", startDateTime, endDateTime);
+//    }
+//    
 
 
   
